@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "363347623237",
+    "firebase_url": "https://sparkresume-36419.firebaseio.com",
+    "project_id": "sparkresume-36419",
+    "storage_bucket": "sparkresume-36419.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363347623237:android:1654ba00b7f23880",
+        "android_client_info": {
+          "package_name": "com.ttekobra.sparkresume"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363347623237-su5fjvuvif74762l9q9sd5kk2bbl3ir1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ttekobra.sparkresume",
+            "certificate_hash": "a16b7cdd3e561656b40ead0dab5ba82dc21ccd57"
+          }
+        },
+        {
+          "client_id": "363347623237-42dsphacv9i30os4md028tokr2ki23bi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwAStuXtuPu-OByM01QLyXNEEBoz3zmSk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363347623237-42dsphacv9i30os4md028tokr2ki23bi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
