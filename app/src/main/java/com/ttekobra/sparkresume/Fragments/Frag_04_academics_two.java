@@ -15,31 +15,41 @@ import android.widget.EditText;
 import com.ttekobra.sparkresume.MainActivity;
 import com.ttekobra.sparkresume.R;
 
-public class Frag_academics_two extends Fragment {
+public class Frag_04_academics_two extends Fragment {
 
     EditText user_input_ac_two_startyear, user_input_ac_two_endyear, user_input_ac_two_degree, user_input_ac_two_university, user_input_ac_two_percentage;
     CardView user_input_ac_two_addmore;
     FloatingActionButton fab_academics_two;
 
-    String AcademicsOneStart;
-    String AcademicsOneEnd;
-    String AcademicsOneDegree;
-    String AcademicsOneUniversity;
-    String AcademicsOnePercentage;
+    String AcademicsTwoStart;
+    String AcademicsTwoEnd;
+    String AcademicsTwoDegree;
+    String AcademicsTwoUniversity;
+    String AcademicsTwoPercentage;
 
     public void GetData() {
-        AcademicsOneStart = user_input_ac_two_startyear.getText().toString();
-        AcademicsOneEnd = user_input_ac_two_endyear.getText().toString();
-        AcademicsOneDegree = user_input_ac_two_degree.getText().toString();
-        AcademicsOneUniversity = user_input_ac_two_university.getText().toString();
-        AcademicsOnePercentage = user_input_ac_two_percentage.getText().toString();
+        AcademicsTwoStart = user_input_ac_two_startyear.getText().toString();
+        AcademicsTwoEnd = user_input_ac_two_endyear.getText().toString();
+        AcademicsTwoDegree = user_input_ac_two_degree.getText().toString();
+        AcademicsTwoUniversity = user_input_ac_two_university.getText().toString();
+        AcademicsTwoPercentage = user_input_ac_two_percentage.getText().toString();
+        try {
+            MainActivity.userDetails.put("AcademicsTwoStart", AcademicsTwoStart);
+            MainActivity.userDetails.put("AcademicsTwoEnd", AcademicsTwoEnd);
+            MainActivity.userDetails.put("AcademicsTwoDegree", AcademicsTwoDegree);
+            MainActivity.userDetails.put("AcademicsTwoUniversity", AcademicsTwoUniversity);
+            MainActivity.userDetails.put("AcademicsTwoPercentage", AcademicsTwoPercentage);
+        } catch (Exception e) {
+
+        }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_frag_academics_two, container, false);
-
+        View view = inflater.inflate(R.layout.layout_frag_04_academics_two, container, false);
+        MainActivity.toolbar.setTitle("Academics Two");
+        MainActivity.frag_progress_bar.setProgress(4);
         user_input_ac_two_startyear = view.findViewById(R.id.user_input_ac_two_startyear);
         user_input_ac_two_endyear = view.findViewById(R.id.user_input_ac_two_endyear);
         user_input_ac_two_degree = view.findViewById(R.id.user_input_ac_two_degree);
@@ -52,8 +62,7 @@ public class Frag_academics_two extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(5);
-                Frag_academics_three frag_academics_three = new Frag_academics_three();
+                Frag_05_academics_three frag_academics_three = new Frag_05_academics_three();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, frag_academics_three);
                 fragmentTransaction.addToBackStack(null);
@@ -64,8 +73,7 @@ public class Frag_academics_two extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(6);
-                Frag_experience_one frag_experience_one = new Frag_experience_one();
+                Frag_06_experience_one frag_experience_one = new Frag_06_experience_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_one);
                 fragmentTransaction.addToBackStack(null);

@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import com.ttekobra.sparkresume.MainActivity;
 import com.ttekobra.sparkresume.R;
 
-public class Frag_personal_details extends Fragment {
+public class Frag_02_personal_details extends Fragment {
 
     String[] dd = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
     String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
@@ -46,13 +46,24 @@ public class Frag_personal_details extends Fragment {
         dateOfBirth = (dd[user_input_dob_dd.getSelectedItemPosition()] +
                 mm[user_input_dob_mm.getSelectedItemPosition()] +
                 yyyy[user_input_dob_yyyy.getSelectedItemPosition()]);
+        try {
+            MainActivity.userDetails.put("sex", sex);
+            MainActivity.userDetails.put("profession", profession);
+            MainActivity.userDetails.put("nationality", nationality);
+            MainActivity.userDetails.put("maritalStatus", maritalStatus);
+            MainActivity.userDetails.put("dateOfBirth", dateOfBirth);
+        } catch (Exception e) {
+
+        }
     }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_frag_personal_details, container, false);
+        View view = inflater.inflate(R.layout.layout_frag_02_personal_details, container, false);
+        MainActivity.toolbar.setTitle("Personal Details");
+        MainActivity.frag_progress_bar.setProgress(2);
         fab_personal_details = view.findViewById(R.id.fab_personal_details);
         user_input_profession = view.findViewById(R.id.user_input_profession);
         user_input_nationality = view.findViewById(R.id.user_input_nationality);
@@ -73,8 +84,7 @@ public class Frag_personal_details extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(3);
-                Frag_academics_one academics_one = new Frag_academics_one();
+                Frag_03_academics_one academics_one = new Frag_03_academics_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, academics_one);
                 fragmentTransaction.addToBackStack(null);

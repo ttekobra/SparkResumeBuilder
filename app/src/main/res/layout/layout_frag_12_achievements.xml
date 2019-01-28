@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView18"
+        android:id="@+id/cardView30"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView19"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,122 +20,105 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/user_input_ac_one_startyear"
+                android:id="@+id/user_input_ach_title_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Enter start year"
-                android:padding="8dp" />
+                android:hint="Achievement one title"
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView19"
+        android:id="@+id/cardView31"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView18"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView30">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/user_input_ac_one_endyear"
+                android:id="@+id/user_input_ach_desc_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Enter end year"
-                android:padding="8dp" />
+                android:hint="Achievement one description"
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView17"
+        android:id="@+id/cardView29"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView18">
+        app:layout_constraintTop_toBottomOf="@+id/cardView31">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/user_input_ac_one_degree"
+                android:id="@+id/user_input_ach_title_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Enter degree"
-                android:padding="8dp" />
+                android:hint="Achievement two title"
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView16"
+        android:id="@+id/cardView28"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView17">
+        app:layout_constraintTop_toBottomOf="@+id/cardView29">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/user_input_ac_one_university"
+                android:id="@+id/user_input_ach_desc_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Enter University or Institute"
-                android:padding="8dp" />
+                android:hint="Achievement two description"
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView15"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView16">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/user_input_ac_one_percentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter percentage"
-                android:padding="8dp" />
-
-        </android.support.design.widget.TextInputLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_academics_one"
+        android:id="@+id/fab_achievement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -145,23 +128,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_check" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/user_input_ac_one_addmore"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView15">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Add more data?"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

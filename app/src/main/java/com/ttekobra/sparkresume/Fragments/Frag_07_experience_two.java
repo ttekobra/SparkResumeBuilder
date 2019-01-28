@@ -15,13 +15,13 @@ import android.widget.EditText;
 import com.ttekobra.sparkresume.MainActivity;
 import com.ttekobra.sparkresume.R;
 
-public class Frag_experience_two extends Fragment {
+public class Frag_07_experience_two extends Fragment {
 
-    String jobTitle;
-    String companyName;
-    String jobDuration;
-    String jobResponsibility;
-    String jobDescription;
+    String jobTwoTitle;
+    String companyTwoName;
+    String jobTwoDuration;
+    String jobTwoResponsibility;
+    String jobTwoDescription;
 
     EditText user_input_xp_two_jobtitle, user_input_xp_two_company, user_input_xp_two_duration, user_input_xp_two_respons, user_input_xp_two_desc;
 
@@ -30,18 +30,28 @@ public class Frag_experience_two extends Fragment {
     FloatingActionButton fab_experience_two;
 
     public void GetData() {
-        jobTitle = user_input_xp_two_jobtitle.getText().toString();
-        companyName = user_input_xp_two_company.getText().toString();
-        jobDuration = user_input_xp_two_duration.getText().toString();
-        jobResponsibility = user_input_xp_two_respons.getText().toString();
-        jobDescription = user_input_xp_two_desc.getText().toString();
+        jobTwoTitle = user_input_xp_two_jobtitle.getText().toString();
+        companyTwoName = user_input_xp_two_company.getText().toString();
+        jobTwoDuration = user_input_xp_two_duration.getText().toString();
+        jobTwoResponsibility = user_input_xp_two_respons.getText().toString();
+        jobTwoDescription = user_input_xp_two_desc.getText().toString();
+        try {
+            MainActivity.userDetails.put("jobTwoTitle", jobTwoTitle);
+            MainActivity.userDetails.put("companyTwoName", companyTwoName);
+            MainActivity.userDetails.put("jobTwoDuration", jobTwoDuration);
+            MainActivity.userDetails.put("jobTwoResponsibility", jobTwoResponsibility);
+            MainActivity.userDetails.put("jobTwoDescription", jobTwoDescription);
+        } catch (Exception e) {
+
+        }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_frag_experience_two, container, false);
-
+        View view = inflater.inflate(R.layout.layout_frag_07_experience_two, container, false);
+        MainActivity.toolbar.setTitle("Experience Two");
+        MainActivity.frag_progress_bar.setProgress(7);
         user_input_xp_two_addmore = view.findViewById(R.id.user_input_xp_two_addmore);
         fab_experience_two = view.findViewById(R.id.fab_experience_two);
         user_input_xp_two_jobtitle = view.findViewById(R.id.user_input_xp_two_jobtitle);
@@ -53,10 +63,20 @@ public class Frag_experience_two extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(8);
-                Frag_experience_three frag_experience_three = new Frag_experience_three();
+                Frag_08_experience_three frag_experience_three = new Frag_08_experience_three();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_three);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        fab_experience_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetData();
+                Frag_09_projects_one frag_09_projects_one = new Frag_09_projects_one();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frag_container, frag_09_projects_one);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

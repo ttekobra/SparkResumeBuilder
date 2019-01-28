@@ -25,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="Enter profession"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="Enter Nationality"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textSize="14sp" />
 
         </android.support.design.widget.TextInputLayout>
 

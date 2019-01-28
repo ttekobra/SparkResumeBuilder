@@ -10,26 +10,36 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.google.firebase.FirebaseApp;
-import com.ttekobra.sparkresume.Fragments.Frag_contact_details;
+import com.ttekobra.sparkresume.Fragments.Frag_01_contact_details;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
     public static ProgressBar frag_progress_bar;
     public static ConstraintLayout main_frag_container;
     Fragment fragment = null;
+    public static Toolbar toolbar;
+
+    public static JSONObject userDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Welcome");
         setSupportActionBar(toolbar);
+
+
         FirebaseApp.initializeApp(MainActivity.this);
 
         frag_progress_bar = findViewById(R.id.frag_progress_bar);
         main_frag_container = findViewById(R.id.main_frag_container);
 
-        fragment = new Frag_contact_details();
+        userDetails = new JSONObject();
+
+        fragment = new Frag_01_contact_details();
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frag_container, fragment).commit();
     }
 

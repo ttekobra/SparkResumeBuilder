@@ -15,7 +15,7 @@ import android.widget.EditText;
 import com.ttekobra.sparkresume.MainActivity;
 import com.ttekobra.sparkresume.R;
 
-public class Frag_academics_one extends Fragment {
+public class Frag_03_academics_one extends Fragment {
 
     EditText user_input_ac_one_startyear, user_input_ac_one_endyear, user_input_ac_one_degree, user_input_ac_one_university, user_input_ac_one_percentage;
     CardView user_input_ac_one_addmore;
@@ -34,13 +34,23 @@ public class Frag_academics_one extends Fragment {
         AcademicsOneDegree = user_input_ac_one_degree.getText().toString();
         AcademicsOneUniversity = user_input_ac_one_university.getText().toString();
         AcademicsOnePercentage = user_input_ac_one_percentage.getText().toString();
+        try {
+            MainActivity.userDetails.put("AcademicsOneStart", AcademicsOneStart);
+            MainActivity.userDetails.put("AcademicsOneEnd", AcademicsOneEnd);
+            MainActivity.userDetails.put("AcademicsOneDegree", AcademicsOneDegree);
+            MainActivity.userDetails.put("AcademicsOneUniversity", AcademicsOneUniversity);
+            MainActivity.userDetails.put("AcademicsOnePercentage", AcademicsOnePercentage);
+        } catch (Exception e) {
+
+        }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_frag_academics_one, container, false);
-
+        View view = inflater.inflate(R.layout.layout_frag_03_academics_one, container, false);
+        MainActivity.toolbar.setTitle("Academics One");
+        MainActivity.frag_progress_bar.setProgress(3);
         user_input_ac_one_startyear = view.findViewById(R.id.user_input_ac_one_startyear);
         user_input_ac_one_endyear = view.findViewById(R.id.user_input_ac_one_endyear);
         user_input_ac_one_degree = view.findViewById(R.id.user_input_ac_one_degree);
@@ -53,8 +63,7 @@ public class Frag_academics_one extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(4);
-                Frag_academics_two frag_academics_two = new Frag_academics_two();
+                Frag_04_academics_two frag_academics_two = new Frag_04_academics_two();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, frag_academics_two);
                 fragmentTransaction.addToBackStack(null);
@@ -65,8 +74,7 @@ public class Frag_academics_one extends Fragment {
             @Override
             public void onClick(View v) {
                 GetData();
-                MainActivity.frag_progress_bar.setProgress(6);
-                Frag_experience_one frag_experience_one = new Frag_experience_one();
+                Frag_06_experience_one frag_experience_one = new Frag_06_experience_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_one);
                 fragmentTransaction.addToBackStack(null);
