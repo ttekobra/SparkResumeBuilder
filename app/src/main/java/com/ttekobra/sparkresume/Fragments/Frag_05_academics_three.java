@@ -4,19 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.AcademicsDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_05_academics_three extends Fragment {
 
-    EditText user_input_ac_three_startyear, user_input_ac_three_endyear, user_input_ac_three_degree, user_input_ac_three_university, user_input_ac_three_percentage;
+    TextInputEditText user_input_ac_three_startyear, user_input_ac_three_endyear, user_input_ac_three_degree, user_input_ac_three_university, user_input_ac_three_percentage;
 
     FloatingActionButton fab_academics_three;
 
@@ -32,15 +34,9 @@ public class Frag_05_academics_three extends Fragment {
         AcademicsThreeDegree = user_input_ac_three_degree.getText().toString();
         AcademicsThreeUniversity = user_input_ac_three_university.getText().toString();
         AcademicsThreePercentage = user_input_ac_three_percentage.getText().toString();
-        try {
-            MainActivity.userDetails.put("AcademicsThreeStart", AcademicsThreeStart);
-            MainActivity.userDetails.put("AcademicsThreeEnd", AcademicsThreeEnd);
-            MainActivity.userDetails.put("AcademicsThreeDegree", AcademicsThreeDegree);
-            MainActivity.userDetails.put("AcademicsThreeUniversity", AcademicsThreeUniversity);
-            MainActivity.userDetails.put("AcademicsThreePercentage", AcademicsThreePercentage);
-        } catch (Exception e) {
 
-        }
+        AcademicsDetails academicsDetails = new AcademicsDetails(AcademicsThreeStart, AcademicsThreeEnd, AcademicsThreeDegree, AcademicsThreeUniversity, AcademicsThreePercentage);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("AcademicsDetailsThree").setValue(academicsDetails);
     }
 
     @Nullable
@@ -61,6 +57,7 @@ public class Frag_05_academics_three extends Fragment {
                 GetData();
                 Frag_06_experience_one frag_experience_one = new Frag_06_experience_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_one);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#25CCF7</color>
     <color name="colorAccent">#25CCF7</color>
     <color name="textViewBackground">#DCDCDC</color>
+    <color name="whiteColor">#ffff</color>
 </resources>

@@ -4,30 +4,32 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.Auth.PhoneAuth.CountryCodeList;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.ContactDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_01_contact_details extends Fragment {
 
     FloatingActionButton fab_contach_details;
     Spinner user_input_country_code;
-    EditText user_input_firstname, user_input_lastname, user_input_mobile, user_input_email, user_input_residential_address;
-
-    String FirstName;
-    String LastName;
-    String MobileNumber;
+    public static String FirstName;
+    public static String LastName;
+    public static String MobileNumber;
+    TextInputEditText user_input_firstname, user_input_lastname, user_input_mobile, user_input_email, user_input_residential_address;
     String Email;
     String ResidentialAddress;
+    ContactDetails contactDetails;
 
     public void GetData() {
         FirstName = user_input_firstname.getText().toString();
@@ -35,15 +37,12 @@ public class Frag_01_contact_details extends Fragment {
         MobileNumber = CountryCodeList.countryAreaCodes[user_input_country_code.getSelectedItemPosition()] + user_input_mobile.getText().toString();
         Email = user_input_email.getText().toString();
         ResidentialAddress = user_input_residential_address.getText().toString();
-        try {
-            MainActivity.userDetails.put("FirstName", FirstName);
-            MainActivity.userDetails.put("LastName", LastName);
-            MainActivity.userDetails.put("MobileNumber", MobileNumber);
-            MainActivity.userDetails.put("Email", Email);
-            MainActivity.userDetails.put("ResidentialAddress", ResidentialAddress);
-        } catch (Exception e) {
 
-        }
+        contactDetails = new ContactDetails(FirstName, LastName, MobileNumber, Email, ResidentialAddress);
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirstName + MobileNumber + LastName)
+                .child("ContactDetails").setValue(contactDetails);
     }
 
     @Nullable
@@ -68,6 +67,7 @@ public class Frag_01_contact_details extends Fragment {
                 GetData();
                 Frag_02_personal_details personal_details = new Frag_02_personal_details();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, personal_details);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

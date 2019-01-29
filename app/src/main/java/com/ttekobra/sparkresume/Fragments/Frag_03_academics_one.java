@@ -4,21 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.AcademicsDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_03_academics_one extends Fragment {
 
-    EditText user_input_ac_one_startyear, user_input_ac_one_endyear, user_input_ac_one_degree, user_input_ac_one_university, user_input_ac_one_percentage;
-    CardView user_input_ac_one_addmore;
+    TextInputEditText user_input_ac_one_startyear, user_input_ac_one_endyear, user_input_ac_one_degree, user_input_ac_one_university, user_input_ac_one_percentage;
+    TextView user_input_ac_one_addmore;
     FloatingActionButton fab_academics_one;
 
     String AcademicsOneStart;
@@ -34,15 +36,9 @@ public class Frag_03_academics_one extends Fragment {
         AcademicsOneDegree = user_input_ac_one_degree.getText().toString();
         AcademicsOneUniversity = user_input_ac_one_university.getText().toString();
         AcademicsOnePercentage = user_input_ac_one_percentage.getText().toString();
-        try {
-            MainActivity.userDetails.put("AcademicsOneStart", AcademicsOneStart);
-            MainActivity.userDetails.put("AcademicsOneEnd", AcademicsOneEnd);
-            MainActivity.userDetails.put("AcademicsOneDegree", AcademicsOneDegree);
-            MainActivity.userDetails.put("AcademicsOneUniversity", AcademicsOneUniversity);
-            MainActivity.userDetails.put("AcademicsOnePercentage", AcademicsOnePercentage);
-        } catch (Exception e) {
 
-        }
+        AcademicsDetails academicsDetails = new AcademicsDetails(AcademicsOneStart, AcademicsOneEnd, AcademicsOneDegree, AcademicsOneUniversity, AcademicsOnePercentage);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("AcademicsDetailsOne").setValue(academicsDetails);
     }
 
     @Nullable
@@ -65,6 +61,7 @@ public class Frag_03_academics_one extends Fragment {
                 GetData();
                 Frag_04_academics_two frag_academics_two = new Frag_04_academics_two();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_academics_two);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -76,6 +73,7 @@ public class Frag_03_academics_one extends Fragment {
                 GetData();
                 Frag_06_experience_one frag_experience_one = new Frag_06_experience_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_one);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

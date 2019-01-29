@@ -4,140 +4,119 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView18"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout17"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/text_input_background"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView19"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_input_ac_three_startyear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Enter start year"
+            android:padding="8dp"
+            android:textSize="@dimen/edittext_size" />
 
-            <EditText
-                android:id="@+id/user_input_ac_three_startyear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter start year"
-                android:padding="8dp"
-                android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView19"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout18"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:background="@drawable/text_input_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView18"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout17"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_input_ac_three_endyear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Enter end year"
+            android:padding="8dp"
+            android:textSize="@dimen/edittext_size" />
 
-            <EditText
-                android:id="@+id/user_input_ac_three_endyear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter end year"
-                android:padding="8dp"
-                android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView17"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout19"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:background="@drawable/text_input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView18">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout17">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_input_ac_three_degree"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Enter degree"
+            android:padding="8dp"
+            android:textSize="@dimen/edittext_size" />
 
-            <EditText
-                android:id="@+id/user_input_ac_three_degree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter degree"
-                android:padding="8dp"
-                android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView16"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:background="@drawable/text_input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView17">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout19">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_input_ac_three_university"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Enter University or Institute"
+            android:padding="8dp"
+            android:textSize="@dimen/edittext_size" />
 
-            <EditText
-                android:id="@+id/user_input_ac_three_university"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter University or Institute"
-                android:padding="8dp"
-                android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView15"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:background="@drawable/text_input_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView16">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout20">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_input_ac_three_percentage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Enter percentage"
+            android:padding="8dp"
+            android:textSize="@dimen/edittext_size" />
 
-            <EditText
-                android:id="@+id/user_input_ac_three_percentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Enter percentage"
-                android:padding="8dp"
-                android:textSize="14sp" />
-
-        </android.support.design.widget.TextInputLayout>
-    </android.support.v7.widget.CardView>
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_academics_three"

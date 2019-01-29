@@ -4,19 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.AchievementDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_12_achievements extends Fragment {
 
-    EditText user_input_ach_title_one, user_input_ach_desc_one, user_input_ach_title_two, user_input_ach_desc_two;
+    TextInputEditText user_input_ach_title_one, user_input_ach_desc_one, user_input_ach_title_two, user_input_ach_desc_two;
     FloatingActionButton fab_achievement;
 
     String achievementTitleOne;
@@ -29,14 +31,13 @@ public class Frag_12_achievements extends Fragment {
         achievementDescOne = user_input_ach_desc_one.getText().toString();
         achievementTitleTwo = user_input_ach_title_two.getText().toString();
         achievementDescTwo = user_input_ach_desc_two.getText().toString();
-        try {
-            MainActivity.userDetails.put("achievementTitleOne", achievementTitleOne);
-            MainActivity.userDetails.put("achievementDescOne", achievementDescOne);
-            MainActivity.userDetails.put("achievementTitleTwo", achievementTitleTwo);
-            MainActivity.userDetails.put("achievementDescTwo", achievementDescTwo);
-        } catch (Exception e) {
 
-        }
+        AchievementDetails achievementDetailsOne = new AchievementDetails(achievementTitleOne, achievementDescOne);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("AchievementDetailsOne").setValue(achievementDetailsOne);
+
+        AchievementDetails achievementDetailsTwo = new AchievementDetails(achievementTitleTwo, achievementDescTwo);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("AchievementDetailsTwo").setValue(achievementDetailsTwo);
+
     }
 
 
@@ -59,6 +60,7 @@ public class Frag_12_achievements extends Fragment {
                 GetData();
                 Frag_13_skills skills = new Frag_13_skills();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, skills);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

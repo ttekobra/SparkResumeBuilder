@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.ExperienceDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_07_experience_two extends Fragment {
@@ -23,9 +25,9 @@ public class Frag_07_experience_two extends Fragment {
     String jobTwoResponsibility;
     String jobTwoDescription;
 
-    EditText user_input_xp_two_jobtitle, user_input_xp_two_company, user_input_xp_two_duration, user_input_xp_two_respons, user_input_xp_two_desc;
+    TextInputEditText user_input_xp_two_jobtitle, user_input_xp_two_company, user_input_xp_two_duration, user_input_xp_two_respons, user_input_xp_two_desc;
 
-    CardView user_input_xp_two_addmore;
+    TextView user_input_xp_two_addmore;
 
     FloatingActionButton fab_experience_two;
 
@@ -35,15 +37,9 @@ public class Frag_07_experience_two extends Fragment {
         jobTwoDuration = user_input_xp_two_duration.getText().toString();
         jobTwoResponsibility = user_input_xp_two_respons.getText().toString();
         jobTwoDescription = user_input_xp_two_desc.getText().toString();
-        try {
-            MainActivity.userDetails.put("jobTwoTitle", jobTwoTitle);
-            MainActivity.userDetails.put("companyTwoName", companyTwoName);
-            MainActivity.userDetails.put("jobTwoDuration", jobTwoDuration);
-            MainActivity.userDetails.put("jobTwoResponsibility", jobTwoResponsibility);
-            MainActivity.userDetails.put("jobTwoDescription", jobTwoDescription);
-        } catch (Exception e) {
 
-        }
+        ExperienceDetails experienceDetails = new ExperienceDetails(jobTwoTitle, companyTwoName, jobTwoDuration, jobTwoResponsibility, jobTwoDescription);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("ExperienceDetailsTwo").setValue(experienceDetails);
     }
 
     @Nullable
@@ -65,6 +61,7 @@ public class Frag_07_experience_two extends Fragment {
                 GetData();
                 Frag_08_experience_three frag_experience_three = new Frag_08_experience_three();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_three);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -76,6 +73,7 @@ public class Frag_07_experience_two extends Fragment {
                 GetData();
                 Frag_09_projects_one frag_09_projects_one = new Frag_09_projects_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_09_projects_one);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

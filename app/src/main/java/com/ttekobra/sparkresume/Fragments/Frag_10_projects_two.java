@@ -4,21 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.ProjectsDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_10_projects_two extends Fragment {
 
-    EditText user_input_pr_two_title, user_input_pr_two_links, user_input_pr_two_desc;
-    CardView user_input_pr_two_addmore;
+    TextInputEditText user_input_pr_two_title, user_input_pr_two_links, user_input_pr_two_desc;
+    TextView user_input_pr_two_addmore;
     FloatingActionButton fab_pr_two;
 
     String projecttwoTitle;
@@ -29,13 +31,9 @@ public class Frag_10_projects_two extends Fragment {
         projecttwoTitle = user_input_pr_two_title.getText().toString();
         projecttwoLinks = user_input_pr_two_links.getText().toString();
         projecttwoDescription = user_input_pr_two_desc.getText().toString();
-        try {
-            MainActivity.userDetails.put("projecttwoTitle", projecttwoTitle);
-            MainActivity.userDetails.put("projecttwoLinks", projecttwoLinks);
-            MainActivity.userDetails.put("projecttwoDescription", projecttwoDescription);
-        } catch (Exception e) {
 
-        }
+        ProjectsDetails projectsDetails = new ProjectsDetails(projecttwoTitle, projecttwoLinks, projecttwoDescription);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("ProjectsDetailsTwo").setValue(projectsDetails);
     }
 
     @Nullable
@@ -54,8 +52,10 @@ public class Frag_10_projects_two extends Fragment {
         fab_pr_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GetData();
                 Frag_12_achievements achievements = new Frag_12_achievements();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, achievements);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -65,8 +65,10 @@ public class Frag_10_projects_two extends Fragment {
         user_input_pr_two_addmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GetData();
                 Frag_11_projects_three projects_three = new Frag_11_projects_three();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, projects_three);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

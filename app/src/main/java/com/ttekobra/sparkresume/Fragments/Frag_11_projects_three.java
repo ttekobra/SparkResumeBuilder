@@ -4,19 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.ProjectsDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_11_projects_three extends Fragment {
 
-    EditText user_input_pr_three_title, user_input_pr_three_links, user_input_pr_three_desc;
+    TextInputEditText user_input_pr_three_title, user_input_pr_three_links, user_input_pr_three_desc;
     FloatingActionButton fab_pr_three;
 
     String projectthreeTitle;
@@ -27,13 +29,9 @@ public class Frag_11_projects_three extends Fragment {
         projectthreeTitle = user_input_pr_three_title.getText().toString();
         projectthreeLinks = user_input_pr_three_links.getText().toString();
         projectthreeDescription = user_input_pr_three_desc.getText().toString();
-        try {
-            MainActivity.userDetails.put("projectthreeTitle", projectthreeTitle);
-            MainActivity.userDetails.put("projectthreeLinks", projectthreeLinks);
-            MainActivity.userDetails.put("projectthreeDescription", projectthreeDescription);
-        } catch (Exception e) {
 
-        }
+        ProjectsDetails projectsDetails = new ProjectsDetails(projectthreeTitle, projectthreeLinks, projectthreeDescription);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("ProjectsDetailsThree").setValue(projectsDetails);
     }
 
     @Nullable
@@ -54,6 +52,7 @@ public class Frag_11_projects_three extends Fragment {
                 GetData();
                 Frag_12_achievements achievements = new Frag_12_achievements();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, achievements);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

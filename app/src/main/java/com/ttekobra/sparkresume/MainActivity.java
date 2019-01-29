@@ -2,26 +2,32 @@ package com.ttekobra.sparkresume;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ttekobra.sparkresume.Fragments.Frag_01_contact_details;
 
-import org.json.JSONObject;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ProgressBar frag_progress_bar;
     public static ConstraintLayout main_frag_container;
     Fragment fragment = null;
     public static Toolbar toolbar;
 
-    public static JSONObject userDetails;
+    public static FirebaseUser user;
+    public static String currentUser;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,35 +37,60 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Welcome");
         setSupportActionBar(toolbar);
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseApp.initializeApp(MainActivity.this);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        currentUser = user.getUid();
 
         frag_progress_bar = findViewById(R.id.frag_progress_bar);
         main_frag_container = findViewById(R.id.main_frag_container);
-
-        userDetails = new JSONObject();
 
         fragment = new Frag_01_contact_details();
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frag_container, fragment).commit();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        /*int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }*/
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.settings_frag) {
-           /* fragment = new FragmentSettings();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.main_frag_container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();*/
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }

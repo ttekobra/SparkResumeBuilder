@@ -1,18 +1,21 @@
 package com.ttekobra.sparkresume.Fragments;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.ttekobra.sparkresume.MainActivity;
+import com.ttekobra.sparkresume.PojoClasses.ExperienceDetails;
 import com.ttekobra.sparkresume.R;
 
 public class Frag_06_experience_one extends Fragment {
@@ -23,9 +26,9 @@ public class Frag_06_experience_one extends Fragment {
     String jobOneResponsibility;
     String jobOneDescription;
 
-    EditText user_input_xp_one_jobtitle, user_input_xp_one_company, user_input_xp_one_duration, user_input_xp_one_respons, user_input_xp_one_desc;
+    TextInputEditText user_input_xp_one_jobtitle, user_input_xp_one_company, user_input_xp_one_duration, user_input_xp_one_respons, user_input_xp_one_desc;
 
-    CardView user_input_xp_one_addmore;
+    TextView user_input_xp_one_addmore;
 
     FloatingActionButton fab_experience_one;
 
@@ -35,15 +38,9 @@ public class Frag_06_experience_one extends Fragment {
         jobOneDuration = user_input_xp_one_duration.getText().toString();
         jobOneResponsibility = user_input_xp_one_respons.getText().toString();
         jobOneDescription = user_input_xp_one_desc.getText().toString();
-        try {
-            MainActivity.userDetails.put("jobOneTitle", jobOneTitle);
-            MainActivity.userDetails.put("companyOneName", companyOneName);
-            MainActivity.userDetails.put("jobOneDuration", jobOneDuration);
-            MainActivity.userDetails.put("jobOneResponsibility", jobOneResponsibility);
-            MainActivity.userDetails.put("jobOneDescription", jobOneDescription);
-        } catch (Exception e) {
 
-        }
+        ExperienceDetails experienceDetails = new ExperienceDetails(jobOneTitle, companyOneName, jobOneDuration, jobOneResponsibility, jobOneDescription);
+        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.FirstName + Frag_01_contact_details.MobileNumber + Frag_01_contact_details.LastName).child("ExperienceDetailsOne").setValue(experienceDetails);
     }
 
     @Nullable
@@ -51,6 +48,7 @@ public class Frag_06_experience_one extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_frag_06_experience_one, container, false);
         MainActivity.toolbar.setTitle("Experience One");
+        ObjectAnimator.ofInt(MainActivity.frag_progress_bar, "progress", 6).start();
         MainActivity.frag_progress_bar.setProgress(6);
         user_input_xp_one_addmore = view.findViewById(R.id.user_input_xp_one_addmore);
         fab_experience_one = view.findViewById(R.id.fab_experience_one);
@@ -66,6 +64,7 @@ public class Frag_06_experience_one extends Fragment {
                 GetData();
                 Frag_07_experience_two frag_experience_two = new Frag_07_experience_two();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_experience_two);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -77,6 +76,7 @@ public class Frag_06_experience_one extends Fragment {
                 GetData();
                 Frag_09_projects_one frag_09_projects_one = new Frag_09_projects_one();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.animation_in, R.anim.animation_out);
                 fragmentTransaction.replace(R.id.main_frag_container, frag_09_projects_one);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
