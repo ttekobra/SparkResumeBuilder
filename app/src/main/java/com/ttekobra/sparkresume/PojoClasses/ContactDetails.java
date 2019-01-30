@@ -2,15 +2,13 @@ package com.ttekobra.sparkresume.PojoClasses;
 
 public class ContactDetails {
 
-    public String FirstName;
-    public String LastName;
+    public String FullName;
     public String MobileNumber;
     public String Email;
     public String ResidentialAddress;
 
-    public ContactDetails(String firstName, String lastName, String mobileNumber, String email, String residentialAddress) {
-        FirstName = firstName;
-        LastName = lastName;
+    public ContactDetails(String fullName, String mobileNumber, String email, String residentialAddress) {
+        FullName = fullName;
         MobileNumber = mobileNumber;
         Email = email;
         ResidentialAddress = residentialAddress;

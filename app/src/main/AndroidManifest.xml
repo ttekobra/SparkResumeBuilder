@@ -11,16 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Auth.PhoneAuth.VerifyCodeActivity" />
-        <activity android:name=".Auth.PhoneAuth.EnterPhoneActivity" />
+        <activity android:name=".SelectTemp.SelectTempListActivity" />
+
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/FACEBOOK_APP_ID" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
+        <meta-data
+            android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
+            android:value="false" />
+
+        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity android:name=".Auth.LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ResumeForm.MainActivity" />
         <activity
             android:name=".SplashScreen"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
