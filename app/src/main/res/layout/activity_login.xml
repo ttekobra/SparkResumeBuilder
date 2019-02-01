@@ -2,13 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Auth.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +18,7 @@
         app:srcCompat="@drawable/ic_logo_light_theme" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/wheel_main"
+        android:id="@+id/wheel_main_layout"
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_marginTop="24dp"
@@ -29,8 +30,8 @@
             android:id="@+id/wheel_img_01"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="45dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/login_img8" />
@@ -39,7 +40,7 @@
             android:id="@+id/wheel_img_02"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toStartOf="@+id/wheel_img_03"
             app:layout_constraintStart_toEndOf="@+id/wheel_img_01"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,8 +50,8 @@
             android:id="@+id/wheel_img_03"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/login_img2" />
@@ -59,7 +60,7 @@
             android:id="@+id/wheel_img_04"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="5dp"
             app:layout_constraintBottom_toTopOf="@+id/wheel_img_05"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wheel_img_03"
@@ -69,8 +70,8 @@
             android:id="@+id/wheel_img_05"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/login_img4" />
@@ -79,7 +80,7 @@
             android:id="@+id/wheel_img_06"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/wheel_img_05"
             app:layout_constraintStart_toEndOf="@+id/wheel_img_07"
@@ -89,16 +90,17 @@
             android:id="@+id/wheel_img_07"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginBottom="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/login_img6" />
 
         <ImageView
             android:id="@+id/wheel_img_08"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             app:layout_constraintBottom_toTopOf="@+id/wheel_img_07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wheel_img_01"
@@ -119,27 +121,71 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Login with Phone"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/redirect_phone_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Login with Google"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/google_login_button"
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/google_login_button"
             android:layout_width="0dp"
             android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/redirect_phone_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:srcCompat="@drawable/login_google" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/redirect_phone_button"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/google_login_button"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:srcCompat="@drawable/login_phone" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Welcome note here"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wheel_main_layout" />
 
 
 </android.support.constraint.ConstraintLayout>

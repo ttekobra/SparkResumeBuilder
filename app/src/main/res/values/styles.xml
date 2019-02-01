@@ -9,4 +9,12 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="LoginTheme" parent="Theme.AccountKit">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="com_accountkit_button_background_color">@color/colorAccent</item>
+        <item name="com_accountkit_button_border_color">@color/colorPrimary</item>
+        <item name="com_accountkit_button_text_color">@android:color/white</item>
+    </style>
 </resources>

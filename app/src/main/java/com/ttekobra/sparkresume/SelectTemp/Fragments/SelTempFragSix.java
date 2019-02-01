@@ -10,15 +10,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.ttekobra.sparkresume.R;
 
 import java.io.FileInputStream;
 
 public class SelTempFragSix extends Fragment {
 
-    public static ImageView sel_temp_img06;
+    PhotoView sel_temp_img06;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sel_temp_frag_six, container, false);

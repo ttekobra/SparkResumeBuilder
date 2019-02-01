@@ -45,6 +45,8 @@ public class SelectTempListActivity extends AppCompatActivity {
 
         adapter = new SelTempFragViewPagerAdapter(getSupportFragmentManager(), list);
         sel_temp_list_viewpager.setAdapter(adapter);
+        ViewPagerAnimation animation = new ViewPagerAnimation();
+        sel_temp_list_viewpager.setPageTransformer(true, animation);
 
         sel_temp_fab.setOnClickListener(new View.OnClickListener() {
             @Override

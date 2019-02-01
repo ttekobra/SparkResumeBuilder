@@ -2,15 +2,24 @@ package com.ttekobra.sparkresume.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.ui.AccountKitActivity;
+import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.facebook.accountkit.ui.LoginType;
+import com.facebook.accountkit.ui.ThemeUIManager;
+import com.facebook.accountkit.ui.UIManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,11 +41,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 1;
     private static final int PHONE_SIGN_IN = 2;
+
+    ImageView wheel_img_01, wheel_img_02, wheel_img_03, wheel_img_04, wheel_img_05, wheel_img_06, wheel_img_07, wheel_img_08;
+    ConstraintLayout wheel_main_layout;
+    CountDownTimer timer;
+    ConstraintLayout login_container;
+
     ImageView google_login_button;
-    //TextView redirect_phone_button;
+    ImageView redirect_phone_button;
+
     GoogleSignInOptions gso;
     GoogleSignInClient mGoogleSignInClient;
+
     private FirebaseAuth mAuth;
+
+    Long max = 5000000L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +63,36 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(LoginActivity.this);
         google_login_button = findViewById(R.id.google_login_button);
+        redirect_phone_button = findViewById(R.id.redirect_phone_button);
+        login_container = findViewById(R.id.login_container);
+
+        wheel_main_layout = findViewById(R.id.wheel_main_layout);
+        wheel_img_01 = findViewById(R.id.wheel_img_01);
+        wheel_img_02 = findViewById(R.id.wheel_img_02);
+        wheel_img_03 = findViewById(R.id.wheel_img_03);
+        wheel_img_04 = findViewById(R.id.wheel_img_04);
+        wheel_img_05 = findViewById(R.id.wheel_img_05);
+        wheel_img_06 = findViewById(R.id.wheel_img_06);
+        wheel_img_07 = findViewById(R.id.wheel_img_07);
+        wheel_img_08 = findViewById(R.id.wheel_img_08);
+
+        int widthForContainer;
+        widthForContainer = login_container.getMaxWidth() - 32;
+        wheel_main_layout.setMinHeight(widthForContainer);
+        wheel_main_layout.setMaxHeight(widthForContainer);
+        wheel_main_layout.setMaxWidth(widthForContainer);
+        wheel_main_layout.setMinWidth(widthForContainer);
+
+        timer = new CountDownTimer(max, 24000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                StartAnim();
+            }
+
+            @Override
+            public void onFinish() {
+            }
+        }.start();
 
         final AccessToken accessToken = AccountKit.getCurrentAccessToken();
 
@@ -54,11 +103,14 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+        final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        /*redirect_phone_button.setOnClickListener(new View.OnClickListener() {
+        redirect_phone_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                timer.cancel();
                 if (accessToken != null) {
                     //Toast.makeText(this, "Welcome back bro", Toast.LENGTH_SHORT).show();
                     //Handle Returning User
@@ -69,16 +121,22 @@ public class LoginActivity extends AppCompatActivity {
                                     LoginType.PHONE,
                                     AccountKitActivity.ResponseType.CODE); // or .ResponseType.TOKEN
                     // ... perform additional configuration ...
+                    configurationBuilder.setReceiveSMS(true);
+                    configurationBuilder.setReadPhoneStateEnabled(true);
+                    configurationBuilder.setVoiceCallbackNotificationsEnabled(true);
+                    configurationBuilder.setUIManager(uiManager);
+
                     intent.putExtra(
                             AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                             configurationBuilder.build());
                     startActivityForResult(intent, PHONE_SIGN_IN);
                 }
             }
-        });*/
+        });
         google_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                timer.cancel();
                 GoogleSignIn();
             }
         });
@@ -157,5 +215,19 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void StartAnim() {
+        Animation clockWise = AnimationUtils.loadAnimation(this, R.anim.clockwise);
+        Animation anti_clockwise = AnimationUtils.loadAnimation(this, R.anim.anti_clockwise);
+        wheel_main_layout.setAnimation(clockWise);
+        wheel_img_01.setAnimation(anti_clockwise);
+        wheel_img_02.setAnimation(anti_clockwise);
+        wheel_img_03.setAnimation(anti_clockwise);
+        wheel_img_04.setAnimation(anti_clockwise);
+        wheel_img_05.setAnimation(anti_clockwise);
+        wheel_img_06.setAnimation(anti_clockwise);
+        wheel_img_07.setAnimation(anti_clockwise);
+        wheel_img_08.setAnimation(anti_clockwise);
     }
 }

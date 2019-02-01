@@ -65,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
         pager = new Pager(getSupportFragmentManager(), list);
 
         viewPager.setAdapter(pager);
-        ViewPagerAnimation animation = new ViewPagerAnimation();
-        //viewPager.setPageTransformer(true, animation);
-
+        /*VerticalViewPagerAnimation animation = new VerticalViewPagerAnimation();
+        viewPager.setPageTransformer(true, animation);*/
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
