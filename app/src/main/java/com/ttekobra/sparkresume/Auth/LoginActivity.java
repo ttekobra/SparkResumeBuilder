@@ -1,68 +1,56 @@
 package com.ttekobra.sparkresume.Auth;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.facebook.accountkit.AccessToken;
-import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.facebook.accountkit.ui.ThemeUIManager;
 import com.facebook.accountkit.ui.UIManager;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ttekobra.sparkresume.R;
-import com.ttekobra.sparkresume.SelectTemp.SelectTempListActivity;
+import com.ttekobra.sparkresume.WelcomeActivity;
+
+import java.io.FileOutputStream;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final int RC_SIGN_IN = 1;
-    private static final int PHONE_SIGN_IN = 2;
+    private static final int PHONE_SIGN_IN = 1;
+    public static String user;
+    FirebaseStorage storage;
+    String DownloaedContent;
+    StorageReference resume_one, resume_two, resume_three, resume_four, resume_five, resume_six;
+    SharedPreferences prefs;
 
     ImageView wheel_img_01, wheel_img_02, wheel_img_03, wheel_img_04, wheel_img_05, wheel_img_06, wheel_img_07, wheel_img_08;
     ConstraintLayout wheel_main_layout;
-    CountDownTimer timer;
     ConstraintLayout login_container;
-
-    ImageView google_login_button;
     ImageView redirect_phone_button;
-
-    GoogleSignInOptions gso;
-    GoogleSignInClient mGoogleSignInClient;
-
-    private FirebaseAuth mAuth;
-
-    Long max = 5000000L;
+    Boolean toDownload = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FirebaseApp.initializeApp(LoginActivity.this);
-        google_login_button = findViewById(R.id.google_login_button);
         redirect_phone_button = findViewById(R.id.redirect_phone_button);
         login_container = findViewById(R.id.login_container);
 
@@ -83,138 +71,121 @@ public class LoginActivity extends AppCompatActivity {
         wheel_main_layout.setMaxWidth(widthForContainer);
         wheel_main_layout.setMinWidth(widthForContainer);
 
-        timer = new CountDownTimer(max, 24000) {
+        StartAnim();
+
+        FirebaseApp.initializeApp(LoginActivity.this);
+        storage = FirebaseStorage.getInstance();
+
+        StorageReference storageRef = storage.getReference();
+
+        resume_one = storageRef.child("resume_samples_png/resume_one.png");
+        resume_two = storageRef.child("resume_samples_png/resume_two.png");
+        resume_three = storageRef.child("resume_samples_png/resume_three.png");
+        resume_four = storageRef.child("resume_samples_png/resume_four.png");
+        resume_five = storageRef.child("resume_samples_png/resume_five.png");
+        resume_six = storageRef.child("resume_samples_png/resume_six.png");
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        try {
+            user = prefs.getString("userID", null);
+            toDownload = prefs.getBoolean("downloaded", false);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        CountDownTimer timer = new CountDownTimer(6000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
-                StartAnim();
+
             }
 
             @Override
             public void onFinish() {
-            }
-        }.start();
-
-        final AccessToken accessToken = AccountKit.getCurrentAccessToken();
-
-        FirebaseApp.initializeApp(LoginActivity.this);
-        mAuth = FirebaseAuth.getInstance();
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("363347623237-42dsphacv9i30os4md028tokr2ki23bi.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-
-        final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        redirect_phone_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timer.cancel();
-                if (accessToken != null) {
-                    //Toast.makeText(this, "Welcome back bro", Toast.LENGTH_SHORT).show();
-                    //Handle Returning User
+                final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
+                if (user != null) {
+                    Toast.makeText(LoginActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     final Intent intent = new Intent(LoginActivity.this, AccountKitActivity.class);
                     AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
                             new AccountKitConfiguration.AccountKitConfigurationBuilder(
                                     LoginType.PHONE,
-                                    AccountKitActivity.ResponseType.CODE); // or .ResponseType.TOKEN
-                    // ... perform additional configuration ...
+                                    AccountKitActivity.ResponseType.CODE);
                     configurationBuilder.setReceiveSMS(true);
                     configurationBuilder.setReadPhoneStateEnabled(true);
                     configurationBuilder.setVoiceCallbackNotificationsEnabled(true);
                     configurationBuilder.setUIManager(uiManager);
-
                     intent.putExtra(
                             AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                             configurationBuilder.build());
                     startActivityForResult(intent, PHONE_SIGN_IN);
                 }
             }
-        });
-        google_login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timer.cancel();
-                GoogleSignIn();
-            }
-        });
-    }
-
-    private void GoogleSignIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        }.start();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-            }
-        } else if (requestCode == PHONE_SIGN_IN) { // confirm that this response matches your request
+        if (requestCode == PHONE_SIGN_IN) {
             AccountKitLoginResult loginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
-            String toastMessage;
-            if (loginResult.getError() != null) {
-                toastMessage = loginResult.getError().getErrorType().getMessage();
-                //showErrorActivity(loginResult.getError());
-            } else if (loginResult.wasCancelled()) {
-                toastMessage = "Login Cancelled";
+            if (loginResult.wasCancelled()) {
+                Toast.makeText(this, "Login Cancelled!", Toast.LENGTH_SHORT).show();
             } else {
-                if (loginResult.getAccessToken() != null) {
-                    toastMessage = "Success:" + loginResult.getAccessToken().getAccountId();
-                } else {
-                    toastMessage = String.format(
-                            "Success:%s...",
-                            loginResult.getAuthorizationCode().substring(0, 10));
+                toDownload = prefs.getBoolean("downloaded", false);
+                if (!toDownload) {
+                    GetImages(resume_one, "imgOne");
                 }
-
-                // If you have an authorization code, retrieve it from
-                // loginResult.getAuthorizationCode()
-                // and pass it to your server and exchange it for an access token.
-                Intent intent = new Intent(this, SelectTempListActivity.class);
+                user = loginResult.getAuthorizationCode();
+                prefs.edit().putString("userID", user).apply();
+                Intent intent = new Intent(this, WelcomeActivity.class);
                 startActivity(intent);
                 finish();
-                // Success! Start your next activity...
-                Toast.makeText(this, "Yeah it's working bro", Toast.LENGTH_SHORT).show();
             }
-
-            // Surface the result to your user in an appropriate way.
-            Toast.makeText(
-                    this,
-                    toastMessage,
-                    Toast.LENGTH_LONG)
-                    .show();
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(LoginActivity.this, SelectTempListActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).addOnFailureListener(this, new OnFailureListener() {
+    public void GetImages(final StorageReference storageReference, final String filename) {
+        long ONE_MEGABYTE = 1024 * 1024;
+        storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                saveImage(getApplicationContext(), bitmap, filename);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(LoginActivity.this, "Content loading failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void saveImage(Context context, Bitmap b, String imageName) {
+        FileOutputStream foStream;
+        try {
+            foStream = context.openFileOutput(imageName, Context.MODE_PRIVATE);
+            b.compress(Bitmap.CompressFormat.PNG, 100, foStream);
+            foStream.close();
+            DownloaedContent = imageName;
+            if (DownloaedContent.contentEquals("imgSix")) {
+                prefs.edit().putBoolean("downloaded", true).apply();
+            } else if (DownloaedContent.contentEquals("imgOne")) {
+                GetImages(resume_two, "imgTwo");
+            } else if (DownloaedContent.contentEquals("imgTwo")) {
+                GetImages(resume_three, "imgThree");
+            } else if (DownloaedContent.contentEquals("imgThree")) {
+                GetImages(resume_four, "imgFour");
+            } else if (DownloaedContent.contentEquals("imgFour")) {
+                GetImages(resume_five, "imgFive");
+            } else if (DownloaedContent.contentEquals("imgFive")) {
+                GetImages(resume_six, "imgSix");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void StartAnim() {

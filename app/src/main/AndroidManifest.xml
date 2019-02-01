@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".SelectTemp.SelectTempListActivity" />
 
         <meta-data
@@ -27,10 +31,9 @@
             android:value="false" />
 
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
-        <activity android:name=".Auth.LoginActivity" />
         <activity android:name=".ResumeForm.MainActivity" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Auth.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
