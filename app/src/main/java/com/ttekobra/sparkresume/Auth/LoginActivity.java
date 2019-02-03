@@ -1,6 +1,7 @@
 package com.ttekobra.sparkresume.Auth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -44,14 +46,12 @@ public class LoginActivity extends AppCompatActivity {
     ImageView wheel_img_01, wheel_img_02, wheel_img_03, wheel_img_04, wheel_img_05, wheel_img_06, wheel_img_07, wheel_img_08;
     ConstraintLayout wheel_main_layout;
     ConstraintLayout login_container;
-    ImageView redirect_phone_button;
     Boolean toDownload = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        redirect_phone_button = findViewById(R.id.redirect_phone_button);
         login_container = findViewById(R.id.login_container);
 
         wheel_main_layout = findViewById(R.id.wheel_main_layout);
@@ -101,27 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
-                if (user != null) {
-                    Toast.makeText(LoginActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    final Intent intent = new Intent(LoginActivity.this, AccountKitActivity.class);
-                    AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
-                            new AccountKitConfiguration.AccountKitConfigurationBuilder(
-                                    LoginType.PHONE,
-                                    AccountKitActivity.ResponseType.CODE);
-                    configurationBuilder.setReceiveSMS(true);
-                    configurationBuilder.setReadPhoneStateEnabled(true);
-                    configurationBuilder.setVoiceCallbackNotificationsEnabled(true);
-                    configurationBuilder.setUIManager(uiManager);
-                    intent.putExtra(
-                            AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
-                            configurationBuilder.build());
-                    startActivityForResult(intent, PHONE_SIGN_IN);
-                }
+                RegisterUser();
             }
         }.start();
     }
@@ -144,6 +124,37 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+        }
+    }
+    public void RegisterUser(){
+        final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
+        if (user != null) {
+            Toast.makeText(LoginActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            new AlertDialog.Builder(LoginActivity.this).setTitle("Terms of use")
+                    .setMessage("")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes, I agree", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            final Intent intent = new Intent(LoginActivity.this, AccountKitActivity.class);
+                            AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
+                                    new AccountKitConfiguration.AccountKitConfigurationBuilder(
+                                            LoginType.PHONE,
+                                            AccountKitActivity.ResponseType.CODE);
+                            configurationBuilder.setReceiveSMS(true);
+                            configurationBuilder.setReadPhoneStateEnabled(true);
+                            configurationBuilder.setVoiceCallbackNotificationsEnabled(true);
+                            configurationBuilder.setUIManager(uiManager);
+                            intent.putExtra(
+                                    AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
+                                    configurationBuilder.build());
+                            startActivityForResult(intent, PHONE_SIGN_IN);
+                        }
+                    }).show();
         }
     }
 

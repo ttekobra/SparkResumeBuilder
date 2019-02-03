@@ -2,11 +2,14 @@ package com.ttekobra.sparkresume.SelectTemp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.ttekobra.sparkresume.R;
 import com.ttekobra.sparkresume.ResumeForm.MainActivity;
@@ -27,13 +30,34 @@ public class SelectTempListActivity extends AppCompatActivity {
     FloatingActionButton sel_temp_fab;
     ArrayList<Fragment> list;
     SelTempFragViewPagerAdapter adapter;
+    ImageView sel_temp_swipe_navigation;
+    boolean nav_swipe = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_temp_list);
+
         sel_temp_list_viewpager = findViewById(R.id.sel_temp_list_viewpager);
         sel_temp_fab = findViewById(R.id.sel_temp_fab);
+        sel_temp_swipe_navigation = findViewById(R.id.sel_temp_swipe_navigation);
+
+        CountDownTimer timer = new CountDownTimer(2000, 500) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if (nav_swipe) {
+                    sel_temp_swipe_navigation.setImageDrawable(getDrawable(R.drawable.swipe_navigatior));
+                    nav_swipe = false;
+                }else if (!nav_swipe){
+                    sel_temp_swipe_navigation.setImageDrawable(getDrawable(R.drawable.swipe_navigator_left_right));
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                sel_temp_swipe_navigation.setVisibility(View.GONE);
+            }
+        }.start();
 
         list = new ArrayList<>();
         list.add(new SelTempFragOne());
@@ -53,6 +77,7 @@ public class SelectTempListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectTempListActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         sel_temp_list_viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

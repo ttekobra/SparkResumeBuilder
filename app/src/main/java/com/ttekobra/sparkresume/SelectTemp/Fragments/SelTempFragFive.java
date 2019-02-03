@@ -19,7 +19,7 @@ import java.io.FileInputStream;
 public class SelTempFragFive extends Fragment {
 
     PhotoView sel_temp_img05;
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sel_temp_frag_five, container, false);
         sel_temp_img05 = view.findViewById(R.id.sel_temp_img05);

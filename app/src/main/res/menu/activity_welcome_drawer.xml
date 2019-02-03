@@ -5,34 +5,50 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/home_page"
+            android:icon="@drawable/welcome_menu_home"
+            android:checked="true"
+            android:title="Home"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/past_resume"
+            android:icon="@drawable/welcome_menu_past_resume"
+            android:title="Past Resume"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/share_app"
+            android:icon="@drawable/welcome_menu_share"
+            android:title="Share with Friends"/>
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/privacy_policy"
+            android:icon="@drawable/welcome_menu_privacy_policy"
+            android:title="Privacy Policy" />
+        <item
+            android:id="@+id/terms_conditions"
+            android:icon="@drawable/welcome_menu_term_conditions"
+            android:title="Terms of use" />
+        <item
+            android:id="@+id/faq"
+            android:icon="@drawable/welcome_menu_faq"
+            android:title="FAQs"/>
+        <item
+            android:id="@+id/aboutus"
+            android:icon="@drawable/welcome_menu_about_us"
+            android:title="About us"/>
+        <item
+            android:id="@+id/our_team"
+            android:icon="@drawable/welcome_menu_our_team"
+            android:title="Our team"/>
+        <item
+            android:id="@+id/contact_us"
+            android:icon="@drawable/welcome_menu_contact_us"
+            android:title="Contact us" />
+        <item
+            android:id="@+id/donation"
+            android:icon="@drawable/welcome_menu_donation"
+            android:title="Donation" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/welcome_menu_logout"
+            android:title="Logout" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

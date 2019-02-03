@@ -9,4 +9,7 @@
     <dimen name="cardView_main_fragment_radius">32dp</dimen>
     <dimen name="cardView_main_fragment_elevation">8dp</dimen>
     <dimen name="cardView_edittext_radius">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="nav_drawer_width">264dp</dimen>
 </resources>

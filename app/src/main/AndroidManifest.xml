@@ -11,11 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FinalActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SelectTemp.SelectTempListActivity" />
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectTemp.SelectTempListActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
@@ -30,10 +33,13 @@
             android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
             android:value="false" />
 
-        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
-        <activity android:name=".ResumeForm.MainActivity" />
+        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ResumeForm.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Auth.LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,5 +48,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

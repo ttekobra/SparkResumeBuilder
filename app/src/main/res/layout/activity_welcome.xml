@@ -15,11 +15,19 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
+        android:background="#FFF"
+        android:clickable="true"
+        android:clipToPadding="false"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
+        android:elevation="4dp"
+        app:insetForeground="#44383838"
+        app:itemBackground="@drawable/menu_background_color"
+        app:itemIconTint="@color/menu_icon_color"
+        app:itemTextColor="@color/menu_text_color"
+        app:menu="@menu/activity_welcome_drawer"
         app:headerLayout="@layout/nav_header_welcome"
-        app:menu="@menu/activity_welcome_drawer" />
+        android:paddingLeft="16dp" />
 
 </android.support.v4.widget.DrawerLayout>

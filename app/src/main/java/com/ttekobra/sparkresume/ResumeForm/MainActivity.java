@@ -1,14 +1,19 @@
 package com.ttekobra.sparkresume.ResumeForm;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.ttekobra.sparkresume.FinalActivity;
 import com.ttekobra.sparkresume.R;
 import com.ttekobra.sparkresume.ResumeForm.FormFragments.Frag_01_contact_details;
 import com.ttekobra.sparkresume.ResumeForm.FormFragments.Frag_02_personal_details;
@@ -76,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int i) {
                 frag_progress_bar.setProgress(i + 1);
+                if (i == 1){
+                    if (Frag_01_contact_details.user_input_mobile.getText().toString().isEmpty()){
+                        Frag_01_contact_details.user_input_mobile.setError("This field can't be empty");
+                        Frag_01_contact_details.user_input_mobile.requestFocus();
+                        viewPager.setCurrentItem(0);
+                    }
+                }
             }
 
             @Override
@@ -90,6 +102,23 @@ public class MainActivity extends AppCompatActivity {
                 int yy = viewPager.getCurrentItem();
                 if (yy == 13) {
                     Frag_14_skills.GetData();
+                    new AlertDialog.Builder(MainActivity.this).setTitle("Submit Form")
+                            .setMessage("If you wish to cancel submission and review you form, press cancel button. Else click submit")
+                            .setCancelable(true)
+                            .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(MainActivity.this, FinalActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("Review form", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            }).show();
                 } else {
                     viewPager.setCurrentItem(yy + 1, true);
                 }
