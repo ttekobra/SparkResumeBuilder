@@ -75,10 +75,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Skill one title"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_skill"
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/skill_one_title"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -141,10 +144,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Skill two title"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_skill"
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/skill_two_title"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 

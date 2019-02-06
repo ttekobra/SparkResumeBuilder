@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Personal Details"
+            android:text="@string/personal_details"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -75,10 +75,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_profession"
-                    android:drawablePadding="8dp"
-                    android:hint="Profession"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/profession"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -100,10 +102,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_nationality"
-                    android:drawablePadding="8dp"
-                    android:hint="Nationality"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/nationality"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -124,9 +128,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Pick Date of Birth"
+                    android:text="@string/pick_date_of_birth"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/edittext_size" />
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -159,8 +163,8 @@
                         android:layout_gravity="left"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:text="Male"
-                        android:textSize="14dp" />
+                        android:text="@string/male"
+                        android:textSize="@dimen/edittext_size" />
 
                     <RadioButton
                         android:id="@+id/user_input_female"
@@ -169,8 +173,8 @@
                         android:layout_gravity="right"
                         android:layout_weight="1"
                         android:checked="false"
-                        android:text="Female"
-                        android:textSize="14dp" />
+                        android:text="@string/female"
+                        android:textSize="@dimen/edittext_size" />
                 </RadioGroup>
 
             </android.support.v7.widget.CardView>
@@ -193,9 +197,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Hobbies"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/hobbies"
+                    android:inputType="text"
+                    android:maxLength="60"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -207,6 +214,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -218,9 +226,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Known Languages"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/known_languages"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 

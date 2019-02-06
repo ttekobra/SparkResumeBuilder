@@ -24,7 +24,7 @@ public class Frag_14_skills extends Fragment {
 
     public static SeekBar user_input_skill_level_one, user_input_skill_level_two;
 
-    public static String skillTitleOne, skillRatingOne, skillTitleTwo, skillRatingTwo;
+    public static String skillTitleOne, skillRatingOne = "5", skillTitleTwo, skillRatingTwo = "5";
 
     public static void GetData() {
         skillTitleOne = user_input_skill_title_one.getText().toString();
@@ -32,6 +32,7 @@ public class Frag_14_skills extends Fragment {
 
         Frag_01_contact_details.GetData();
         Frag_02_personal_details.GetData();
+        Frag_03_about_me.GetData();
         Frag_04_academics_one.GetData();
         Frag_05_academics_two.GetData();
         Frag_06_academics_three.GetData();
@@ -69,6 +70,9 @@ public class Frag_14_skills extends Fragment {
         user_input_skill_level_one = view.findViewById(R.id.user_input_skill_level_one);
         user_input_skill_level_two = view.findViewById(R.id.user_input_skill_level_two);
         user_input_skill_title_two = view.findViewById(R.id.user_input_skill_title_two);
+
+        user_input_skill_level_one.setProgress(50);
+        user_input_skill_level_two.setProgress(50);
 
         user_input_skill_level_one.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

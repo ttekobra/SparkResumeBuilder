@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Achievements"
+            android:text="@string/achievements"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/form_frag_textsize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_12" />
+            app:srcCompat="@drawable/ic_13" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -74,10 +74,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Achievement one title"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_achivement_title"
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/achievement_one_title"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -98,10 +101,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Achievement one description"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_achivement_description"
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/achievement_one_description"
+                    android:inputType="text"
+                    android:maxLength="140"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -122,10 +128,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Achievement two title"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_achivement_title"
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/achievement_two_title"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -148,10 +157,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/draw_left_address"
-                    android:drawablePadding="8dp"
-                    android:hint="Achievement two description"
-                    android:padding="8dp" />
+                    android:drawableLeft="@drawable/draw_left_achivement_description"
+                    android:drawablePadding="@dimen/eddittext_padding"
+                    android:hint="@string/achievement_two_description"
+                    android:inputType="text"
+                    android:maxLength="140"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 

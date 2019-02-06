@@ -30,7 +30,7 @@ public class Frag_02_personal_details extends Fragment {
 
     public static RadioGroup user_input_gender;
     public static RadioButton radioGenderButton;
-    public static String profession, nationality, dateOfBirth, sex, knownLanguages, hobbies;
+    public static String profession, nationality, dateOfBirth = "01010001", sex, knownLanguages, hobbies;
 
     public static void GetData() {
         knownLanguages = user_input_known_languages.getText().toString();
@@ -73,6 +73,7 @@ public class Frag_02_personal_details extends Fragment {
                         dateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(false);
                 dialog.show();
             }
         });
@@ -81,7 +82,7 @@ public class Frag_02_personal_details extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                year = year + 1;
+                year = year;
 
                 String dd;
                 String mm;

@@ -17,17 +17,16 @@
         android:id="@+id/nav_view"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
         android:background="#FFF"
         android:clickable="true"
         android:clipToPadding="false"
-        android:layout_gravity="start"
         android:elevation="4dp"
-        app:insetForeground="#44383838"
+        android:paddingLeft="16dp"
+        app:headerLayout="@layout/nav_header_welcome"
         app:itemBackground="@drawable/menu_background_color"
         app:itemIconTint="@color/menu_icon_color"
         app:itemTextColor="@color/menu_text_color"
-        app:menu="@menu/activity_welcome_drawer"
-        app:headerLayout="@layout/nav_header_welcome"
-        android:paddingLeft="16dp" />
+        app:menu="@menu/activity_welcome_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

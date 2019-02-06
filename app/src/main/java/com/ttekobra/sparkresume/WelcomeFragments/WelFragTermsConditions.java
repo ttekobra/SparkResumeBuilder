@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import com.ttekobra.sparkresume.R;
 
@@ -15,6 +16,8 @@ public class WelFragTermsConditions extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.wel_frag_terms_conditions, container, false);
+        WebView wel_frag_terms_webview = view.findViewById(R.id.wel_frag_terms_webview);
+        wel_frag_terms_webview.loadUrl("https://impeded-father.000webhostapp.com/Terms_and_conditions.html");
         return view;
     }
 }

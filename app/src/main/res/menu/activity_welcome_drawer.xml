@@ -10,10 +10,6 @@
             android:checked="true"
             android:title="Home"/>
         <item
-            android:id="@+id/past_resume"
-            android:icon="@drawable/welcome_menu_past_resume"
-            android:title="Past Resume"/>
-        <item
             android:id="@+id/share_app"
             android:icon="@drawable/welcome_menu_share"
             android:title="Share with Friends"/>
@@ -26,10 +22,6 @@
             android:icon="@drawable/welcome_menu_term_conditions"
             android:title="Terms of use" />
         <item
-            android:id="@+id/faq"
-            android:icon="@drawable/welcome_menu_faq"
-            android:title="FAQs"/>
-        <item
             android:id="@+id/aboutus"
             android:icon="@drawable/welcome_menu_about_us"
             android:title="About us"/>
@@ -37,10 +29,6 @@
             android:id="@+id/our_team"
             android:icon="@drawable/welcome_menu_our_team"
             android:title="Our team"/>
-        <item
-            android:id="@+id/contact_us"
-            android:icon="@drawable/welcome_menu_contact_us"
-            android:title="Contact us" />
         <item
             android:id="@+id/donation"
             android:icon="@drawable/welcome_menu_donation"
@@ -50,5 +38,4 @@
             android:icon="@drawable/welcome_menu_logout"
             android:title="Logout" />
     </group>
-
 </menu>

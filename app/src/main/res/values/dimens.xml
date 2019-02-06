@@ -5,11 +5,15 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="edittext_size">16sp</dimen>
+    <dimen name="edittext_size">14sp</dimen>
     <dimen name="cardView_main_fragment_radius">32dp</dimen>
     <dimen name="cardView_main_fragment_elevation">8dp</dimen>
     <dimen name="cardView_edittext_radius">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="nav_drawer_width">264dp</dimen>
+    <dimen name="drawable_left_padding">8dp</dimen>
+    <dimen name="eddittext_padding">8dp</dimen>
+    <dimen name="cardview_edittext_padding">8dp</dimen>
+    <dimen name="form_frag_textsize">30sp</dimen>
 </resources>

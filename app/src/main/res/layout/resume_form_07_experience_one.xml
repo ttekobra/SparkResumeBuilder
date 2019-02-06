@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Experiences"
+            android:text="@string/experiences"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/form_frag_textsize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_06" />
+            app:srcCompat="@drawable/ic_07" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -74,9 +74,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_job_title"
-                    android:drawablePadding="8dp"
-                    android:hint="Job title"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/job_title"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="25"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -98,9 +101,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_company"
-                    android:drawablePadding="8dp"
-                    android:hint="Company name"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/company_name"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -111,6 +117,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView15">
@@ -121,9 +128,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_duration"
-                    android:drawablePadding="8dp"
-                    android:hint="Duration"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/eddittext_padding"
+                    android:hint="@string/duration"
+                    android:inputType="number"
+                    android:maxLength="30"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -133,6 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,9 +155,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_responsibility"
-                    android:drawablePadding="8dp"
-                    android:hint="Responsibilities"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/responsibilities"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -157,6 +171,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -169,9 +184,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_description"
-                    android:drawablePadding="8dp"
-                    android:hint="Description"
-                    android:padding="8dp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/description"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 

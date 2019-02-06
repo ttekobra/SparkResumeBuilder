@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Academic Details"
+            android:text="@string/academic_details"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/form_frag_textsize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_05" />
+            app:srcCompat="@drawable/ic_06" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,10 +75,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_duration"
-                    android:drawablePadding="8dp"
-                    android:hint="Time Duration"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/time_duration"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -87,7 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,10 +102,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_degree"
-                    android:drawablePadding="8dp"
-                    android:hint="Degree"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/degree"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="30"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -112,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,10 +129,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_university"
-                    android:drawablePadding="8dp"
-                    android:hint="University/Institute"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/university_institute"
+                    android:inputType="text"
+                    android:maxLength="140"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
 
@@ -136,9 +142,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="@dimen/cardView_edittext_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -151,10 +157,12 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/draw_left_percentage"
-                    android:drawablePadding="8dp"
-                    android:hint="Percentage/CGPA"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
+                    android:drawablePadding="@dimen/drawable_left_padding"
+                    android:hint="@string/percentage_cgpa"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:padding="@dimen/eddittext_padding"
+                    android:textSize="@dimen/edittext_size" />
 
             </android.support.v7.widget.CardView>
         </android.support.constraint.ConstraintLayout>

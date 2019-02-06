@@ -1,6 +1,7 @@
 package com.ttekobra.sparkresume;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,13 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.facebook.accountkit.AccountKit;
+import com.ttekobra.sparkresume.Auth.LoginActivity;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragAboutUs;
-import com.ttekobra.sparkresume.WelcomeFragments.WelFragContactUs;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragDonation;
-import com.ttekobra.sparkresume.WelcomeFragments.WelFragFAQs;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragHome;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragOurTeam;
-import com.ttekobra.sparkresume.WelcomeFragments.WelFragPastResume;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragPrivacyPolicy;
 import com.ttekobra.sparkresume.WelcomeFragments.WelFragTermsConditions;
 
@@ -31,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity
     Fragment fragment = null;
     Toolbar toolbar;
     SharedPreferences prefs;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,11 @@ public class WelcomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_welcome);
         toolbar = findViewById(R.id.terms_conditions_toolbar);
         setSupportActionBar(toolbar);
+
+        if (key != null) {
+            fragment = new WelFragDonation();
+            getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
+        }
 
         fragment = new WelFragHome();
         getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
@@ -66,14 +71,12 @@ public class WelcomeActivity extends AppCompatActivity
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //if user pressed "yes", then he is allowed to exit from application
                     finish();
                 }
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //if user select "No", just cancel this dialog and continue with app
                     dialog.cancel();
                 }
             });
@@ -85,7 +88,6 @@ public class WelcomeActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.privacy_policy){
@@ -102,16 +104,6 @@ public class WelcomeActivity extends AppCompatActivity
             fragment = new WelFragTermsConditions();
             getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
             toolbar.setTitle("Terms of use");
-        }
-        else if (id == R.id.past_resume){
-            fragment = new WelFragPastResume();
-            getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
-            toolbar.setTitle("Previous build");
-        }
-        else if (id == R.id.faq){
-            fragment = new WelFragFAQs();
-            getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
-            toolbar.setTitle("FAQs");
         }
         else if (id == R.id.aboutus){
             fragment = new WelFragAboutUs();
@@ -131,12 +123,9 @@ public class WelcomeActivity extends AppCompatActivity
         else if (id == R.id.logout){
             AccountKit.logOut();
             prefs.edit().putString("userID", null).apply();
+            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+            startActivity(intent);
             finish();
-        }
-        else if (id == R.id.contact_us){
-            fragment = new WelFragContactUs();
-            getSupportFragmentManager().beginTransaction().replace(R.id.welcome_frag_container, fragment).commit();
-            toolbar.setTitle("Contact us");
         }
         else if (id == R.id.share_app){
 

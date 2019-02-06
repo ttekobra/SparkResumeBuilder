@@ -42,4 +42,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageView
+        android:id="@+id/main_activity_swipe_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BC000000"
+        android:src="@drawable/swipe_indicator_up_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

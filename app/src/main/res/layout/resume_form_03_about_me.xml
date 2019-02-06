@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="About me"
+            android:text="@string/about_me"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/form_frag_textsize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +54,15 @@
         app:layout_constraintTop_toBottomOf="@+id/sdfsdf">
 
         <EditText
+            android:id="@+id/user_input_about_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:lines="10"
-            android:padding="16dp" />
+            android:drawableTop="@drawable/draw_left_fullname"
+            android:lines="5"
+            android:maxLength="70"
+            android:padding="@dimen/eddittext_padding"
+            android:textSize="@dimen/edittext_size" />
 
     </android.support.v7.widget.CardView>
 

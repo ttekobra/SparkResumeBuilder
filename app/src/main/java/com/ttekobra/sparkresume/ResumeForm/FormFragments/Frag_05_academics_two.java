@@ -26,7 +26,9 @@ public class Frag_05_academics_two extends Fragment {
         AcademicsTwoPercentage = user_input_ac_two_percentage.getText().toString();
 
         AcademicsDetails academicsDetails = new AcademicsDetails(AcademicsTwoDuration, AcademicsTwoDegree, AcademicsTwoUniversity, AcademicsTwoPercentage);
-        FirebaseDatabase.getInstance().getReference("Users").child(Frag_01_contact_details.MobileNumber).child("AcademicsDetailsTwo").setValue(academicsDetails);
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(Frag_01_contact_details.MobileNumber)
+                .child("AcademicsDetailsTwo").setValue(academicsDetails);
     }
 
     @Nullable

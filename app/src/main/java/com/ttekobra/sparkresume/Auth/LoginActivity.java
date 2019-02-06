@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -93,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        CountDownTimer timer = new CountDownTimer(6000, 500) {
+        CountDownTimer timer = new CountDownTimer(3000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -101,7 +103,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                RegisterUser();
+                if (haveNetworkConnection()) {
+                    RegisterUser();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please connect to internet", Toast.LENGTH_LONG).show();
+                }
             }
         }.start();
     }
@@ -129,7 +135,11 @@ public class LoginActivity extends AppCompatActivity {
     public void RegisterUser(){
         final UIManager uiManager = new ThemeUIManager(R.style.LoginTheme);
         if (user != null) {
-            Toast.makeText(LoginActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+            try {
+                Toast.makeText(LoginActivity.this, "Welcome back", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
             startActivity(intent);
             finish();
@@ -211,5 +221,21 @@ public class LoginActivity extends AppCompatActivity {
         wheel_img_06.setAnimation(anti_clockwise);
         wheel_img_07.setAnimation(anti_clockwise);
         wheel_img_08.setAnimation(anti_clockwise);
+    }
+
+    private boolean haveNetworkConnection() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
     }
 }
